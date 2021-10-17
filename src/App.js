@@ -1,28 +1,28 @@
-import React from 'react';
-import './App.css'
-import { Route, Switch } from 'react-router-dom'
-import Nav from './Nav'
-import Home from './Home'
-import About from './About'
-import PageNotFound from './PageNotFound'
+import React from 'react'
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom'
+import User from './User'
 
 const App = () => {
+  let users = [
+    { name: 'anil', id: 1 },
+    { name: 'peter', id: 2 },
+    { name: 'bruce', id: 3 },
+    { name: 'tony', id: 4 },
+  ]
   return (
-    <div className="app">
-      <Nav />
-      <Switch>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/" exact={true}>
-          <Home />
-        </Route>
-        <Route path="*" >
-          <PageNotFound />
-        </Route>
-      </Switch>
+    <div>
+      <Router>
+      {users.map((user, i) => {
+        return (
+          <div key={i}>
+            <Link to={"/user/"+user.name+"/"+user.id}><h3>{user.name}</h3></Link>
+          </div>
+        )
+      })}
+      <Route path="/user/:name/:id"><User /></Route>
+      </Router>
     </div>
   )
 }
 
-export default App;
+export default App
