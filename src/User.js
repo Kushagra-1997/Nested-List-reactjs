@@ -1,14 +1,11 @@
-import React,{useEffect} from 'react'
+import React,{forwardRef} from 'react'
 
-const User = ({count}) => {
-    useEffect(() => {
-        console.log('Calling useEffect using props');
-    },[count])
+const User = (props,ref) => {
     return (
         <div>
-            <h1>Calling useEffect using props</h1>
+            <input type="text" ref={ref} />
         </div>
     )
 }
 
-export default User
+export default forwardRef(User);
